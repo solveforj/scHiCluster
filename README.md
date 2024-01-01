@@ -9,12 +9,12 @@ Running scHiCluster requries numpy, scipy, pandas, h5py, scikit-learn, opencv-py
 In order to visualize the results, we also need matplotlib, umap-learn, multicore-tsne, and harmonypy to account for potential batch effects.  
 First, creat a new conda environment and activate it by
 ```
-conda create -n schicluster python==3.6.8
+conda env create -n schicluster --file schicluster.yml
 conda activate schicluster
 ```
 Then install install scHiCluster by
 ```
-pip install git+https://github.com/zhoujt1994/scHiCluster.git
+pip install git+https://github.com/solveforj/scHiCluster.git
 ```
 
 ## Tutorial
