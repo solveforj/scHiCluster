@@ -15,7 +15,7 @@ import sys
 import logging
 import os
 
-os.environ["NUMEXPR_MAX_THREADS"] = "8"
+os.environ["NUMEXPR_MAX_THREADS"] = "100"
 
 log = logging.getLogger()
 
