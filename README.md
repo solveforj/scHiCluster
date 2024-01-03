@@ -14,6 +14,7 @@ conda activate schicluster
 ```
 Then install install scHiCluster by
 ```
+export LC_ALL="en_US.UTF-8"
 pip install git+https://github.com/solveforj/scHiCluster.git
 ```
 
