@@ -8,9 +8,9 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 import pathlib
 
 
-def make_idx(n_dim, dist, resolution):
+def make_idx(n_dim, min_dist, max_dist, resolution):
     idx = np.triu_indices(n_dim, k=1)
-    idx_filter = np.array([(yy - xx) < (dist / resolution + 1)
+    idx_filter = np.array([(min_dist / resolution + 1) < (yy - xx) < (max_dist / resolution + 1)
                            for xx, yy in zip(idx[0], idx[1])])
     idx = (idx[0][idx_filter], idx[1][idx_filter])
     return idx
@@ -21,9 +21,10 @@ def make_chrom_matrix(cell_table,
                       nbins,
                       output_path,
                       scale_factor,
-                      dist,
+                      min_dist,
+                      max_dist,
                       resolution):
-    idx = make_idx(nbins, dist, resolution)
+    idx = make_idx(nbins, min_dist, max_dist, resolution)
     shape = (cell_table.size, idx[0].size)
     # read data
     chrom_matrix = np.zeros(shape=shape, dtype='float32')
@@ -58,7 +59,8 @@ def embedding(cell_table_path,
               output_dir,
               chrom_size_path=None,
               dim=50,
-              dist=1000000,
+              min_dist=0,
+              max_dist=1000000,
               resolution=100000,
               scale_factor=100000,
               norm_sig=True,
@@ -95,7 +97,8 @@ def embedding(cell_table_path,
                                 nbins=nbins,
                                 output_path=output_path,
                                 scale_factor=scale_factor,
-                                dist=dist,
+                                min_dist=min_dist,
+                                max_dist=max_dist,
                                 resolution=resolution)
             futures[future] = chrom
 
