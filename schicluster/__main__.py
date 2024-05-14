@@ -639,7 +639,9 @@ def embedding_register_subparser(subparser):
                             '1. chromosome name, 2. chromosome length. No header')
     parser.add_argument('--dim', type=int, required=False, default=50,
                         help='')
-    parser.add_argument('--dist', type=int, required=False, default=1000000,
+    parser.add_argument('--min_dist', type=int, required=False, default=0,
+                        help='')
+    parser.add_argument('--max_dist', type=int, required=False, default=1000000,
                         help='')
     parser.add_argument('--resolution', type=int, required=False, default=100000,
                         help='Resolution for embedding.'
